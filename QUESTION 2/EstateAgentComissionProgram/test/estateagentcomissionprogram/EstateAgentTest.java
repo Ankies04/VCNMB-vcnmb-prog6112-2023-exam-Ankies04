@@ -4,7 +4,6 @@
  */
 package estateagentcomissionprogram;
 
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,9 +12,10 @@ import static org.junit.Assert.*;
  * @author anksb
  */
 public class EstateAgentTest {
-    
+
     /**
-     * Test of calculateCommission_CalculatedSuccessfully method, of class EstateAgent.
+     * Test of calculateCommission_CalculatedSuccessfully method, of class
+     * EstateAgent.
      */
     @Test
     public void testCalculateCommission_CalculatedSuccessfully() {
@@ -23,18 +23,28 @@ public class EstateAgentTest {
         EstateAgent estateAgent = new EstateAgent();
         double result = estateAgent.CalculateCommission("100000", "5");
         assertEquals(5000, result, 0.001);
-       
-    
     }
+
     /**
-     * Test of CalculateCommission_CalculatedUnSuccessfully() method, of class EstateAgent.
+     * Test of calculateCommission_CalculatedUnSuccessfully method, of class
+     * EstateAgent.
+     */
+    @Test
+    public void testCalculateCommission_CalculatedUnsuccessfully() {
+        EstateAgent estateAgent = new EstateAgent();
+        double commission = estateAgent.CalculateCommission("invalidPrice", "invalidCommission");
+        assertEquals(0.0, commission, 0.001);
+    }
+
+    /**
+     * Test of CalculateCommission_CalculatedUnSuccessfully() method, of class
+     * EstateAgent.
      */
     @Test
     public void testValidateData_isLocationValid() {
-        System.out.println("There is a calculation error. Please try again.");
+        System.out.println("The location entered is valid.");
         EstateAgent estateAgent = new EstateAgent();
         Data validData = new Data("Cape Town", "ValidName", "1000000", "5");
         assertTrue(estateAgent.ValidateData(validData));
     }
 }
-

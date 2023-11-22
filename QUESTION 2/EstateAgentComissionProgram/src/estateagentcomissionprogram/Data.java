@@ -10,10 +10,10 @@ package estateagentcomissionprogram;
  */
 
     public class Data {
-    private String estAgentLocation;
-    private String nameOfEstAgent;
-    private String priceOfProperty;
-    private String commissionPercentage;
+    private final String estAgentLocation;
+    private final String nameOfEstAgent;
+    private final String priceOfProperty;
+    private final String commissionPercentage;
     
 
     public Data(String estAgentLocation, String nameOfEstAgent, String priceOfProperty, String commissionPercentage) {

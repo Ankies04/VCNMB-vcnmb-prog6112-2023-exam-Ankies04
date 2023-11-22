@@ -10,21 +10,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author anksb
  */
 public class EstAgentCommisionProgram extends javax.swing.JFrame {
- 
-    
+
     /**
      * Creates new form EstAgentCommisionProgram
      */
     public EstAgentCommisionProgram() {
         initComponents();
-        
     }
 
     /**
@@ -171,64 +167,67 @@ public class EstAgentCommisionProgram extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // (www.youtube.com, n.d.)
     private void ExitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuItemActionPerformed
         // Close the application with the exit menu item
         System.exit(0);
     }//GEN-LAST:event_ExitMenuItemActionPerformed
 
+    //(www.youtube.com, n.d.)
     private void processReportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processReportMenuItemActionPerformed
-     // Retrieve input values from the GUI components
+        // Get input values from the GUI components
         String estateAgentLocation = (String) estAgentLocationComboBox.getSelectedItem();
         String nameOfEstAgent = estAgentNameTextField.getText();
         String pPrice = propertyPriceTextField.getText();
-        String EAcommissionPercentage =  commissionPercentageTextField.getText();
+        String EAcommissionPercentage = commissionPercentageTextField.getText();
 
-        // Validate data using EstateAgent class
+        // Validation of data using EstateAgent class
         EstateAgent estateAgent = new EstateAgent();
         Data dataToValidate = new Data(estateAgentLocation, nameOfEstAgent, pPrice, EAcommissionPercentage);
 
-       if (estateAgent.ValidateData(dataToValidate)) {
-        // Data is valid, calculate commission and display the report
-        double commissionOfEA = estateAgent.CalculateCommission(pPrice, EAcommissionPercentage);
+        if (estateAgent.ValidateData(dataToValidate)) {
+            // Data is valid, comission is calculated and display the report
+            double commissionOfEA = estateAgent.CalculateCommission(pPrice, EAcommissionPercentage);
 
-        // Create a formatted report using normal 'R' for currency
-        String report;
-            report = String.format("AGENT LOCATION: %s\n" +
-                    "AGENT NAME: %s\n" +
-                    "PROPERTY PRICE: R %,.2f\n" +
-                    "COMMISSION PERCENTAGE: %s%%\n" +
-                    "CALCULATED COMMISSION: R %,.2f",
+            // Estate Agent Sales Report being displayed
+            String report;
+            report = String.format("AGENT LOCATION: %s\n"
+                    + "AGENT NAME: %s\n"
+                    + "PROPERTY PRICE: R %,.2f\n"
+                    + "COMMISSION PERCENTAGE: %s%%\n"
+                    + "CALCULATED COMMISSION: R %,.2f",
                     estateAgentLocation, nameOfEstAgent, Double.parseDouble(pPrice), EAcommissionPercentage, commissionOfEA);
 
-        estAgentReportTextArea.setText(report);
-    } else {
-        // Data is invalid, show an error message or handle it accordingly
-        JOptionPane.showMessageDialog(this, "Invalid data. Please check the input values.");
-    }
-   
-    }//GEN-LAST:event_processReportMenuItemActionPerformed
+            estAgentReportTextArea.setText(report);
+        } else {
+            // Data is invalid therefore an error message will be displayed
+            JOptionPane.showMessageDialog(this, "Invalid data. Please check the input values.");
+        }
 
+    }//GEN-LAST:event_processReportMenuItemActionPerformed
+    // (www.youtube.com, n.d.)
     private void saveReportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveReportMenuItemActionPerformed
         //Collect information from the estate agent report in the text area
         String reportInfo = estAgentReportTextArea.getText();
-        
-        //File name
+
+        //The name of the file
         String nameOfFile = "estAgentReport.txt";
-        
+
         //File object with name
-        File file = new File (nameOfFile);
-        
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
-        // Write the estate agent report information into this file
-        writer.write(reportInfo);
-        
-        //Message to show that it is correct
-        JOptionPane.showMessageDialog(this,"The Estate Agent report is saved to " + nameOfFile,"successfullly", JOptionPane.INFORMATION_MESSAGE);
+        File file = new File(nameOfFile);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            // Write the estate agent report information into this file
+            writer.write(reportInfo);
+
+            //Message to show that the data is correct
+            JOptionPane.showMessageDialog(this, "The Estate Agent report is saved to " + nameOfFile, "successfullly", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-          JOptionPane.showMessageDialog(this, "There is an error saving the report to " + nameOfFile, "Error", JOptionPane.ERROR_MESSAGE);     
+            JOptionPane.showMessageDialog(this, "There is an error saving the report to " + nameOfFile, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveReportMenuItemActionPerformed
 
+    //(www.youtube.com, n.d.), (www3.ntu.edu.sg, n.d.)
     private void ClearMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearMenuItemActionPerformed
         // Clear the text fields and text area with the clear Menu Item
         estAgentLocationComboBox.setSelectedIndex(0);
@@ -238,10 +237,6 @@ public class EstAgentCommisionProgram extends javax.swing.JFrame {
         estAgentReportTextArea.setText("");
     }//GEN-LAST:event_ClearMenuItemActionPerformed
 
-   
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -296,3 +291,17 @@ public class EstAgentCommisionProgram extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveReportMenuItem;
     // End of variables declaration//GEN-END:variables
 }
+
+//////////////REFERENCING/////////////////
+/**
+ * Farrell, J. (2019). Java programming. Australia: Cengage Learning.
+ * www.youtube.com. (n.d.). PROG6112 LU6 GUIs 2. [online] Available at:
+ * https://www.youtube.com/watch?v=D4jfF4WM570&t=88s Accessed 22 Nov. 2023
+ * www.youtube.com. (n.d.). PROG6112 LU6 GUIs 1. [online] Available at:
+ * https://www.youtube.com/watch?v=4tXI5mM2jbo Accessed 22 Nov. 2023
+ * www.youtube.com. (n.d.). PROG6112 LU6 GUIs 5. [online] Available at:
+ * https://www.youtube.com/watch?v=8oCOO0Pd0tM&t=198s Accessed 22 Nov. 2023
+ * www3.ntu.edu.sg. (n.d.). GUI Programming Part 2 - Java Programming Tutorial.
+ * [online] Available at:
+ * https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI_2.html.
+ */
