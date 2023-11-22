@@ -40,7 +40,7 @@ public class EstateAgent implements IEstateAgent {
                 || Double.parseDouble(dataToValidate.getCommissionPercentage()) <= 0) { //(GeeksforGeeks, 2018)
             return false; //If it does not meet the validation rules
         }
-        return true;//If it meets the validation rules
+        return true; //If it meets the validation rules
     }
 
 }
